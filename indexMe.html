@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scam Message Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #search-box {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+
+        #scan-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #scan-button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        #risk-scale {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            margin-top: 20px;
+        }
+
+        .risk-level {
+            flex: 1;
+            height: 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .low-caution {
+            background-color: #4CAF50; /* Green */
+        }
+
+        .moderate-caution {
+            background-color: #FFC107; /* Yellow */
+        }
+
+        .high-caution {
+            background-color: #F44336; /* Red */
+        }
+
+        .risk-number {
+            position: absolute;
+            top: 15px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        /* Flashing animation */
+        .flash {
+            animation: flash 1s alternate infinite;
+        }
+        
+        @keyframes flash {
+            from {
+                background-color: #F44336; /* Red */
+            }
+            to {
+                background-color: #FFC107; /* Yellow */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Scam Message Scanner</h1>
+    <input type="text" id="search-box" placeholder="Enter text to scan...">
+    <button id="scan-button" onclick="scanMessage()">Scan</button>
+    <div id="result"></div>
+    <div id="risk-scale">
+        <div class="risk-level low-caution">
+            <div class="risk-number">1</div>
+        </div>
+        <div class="risk-level moderate-caution">
+            <div class="risk-number">5</div>
+        </div>
+        <div class="risk-level high-caution">
+            <div class="risk-number">10</div>
+        </div>
+    </div>
+
+    <script>
+        function scanMessage() {
+            var userInput = document.getElementById("search-box").value;
+            var riskLevel = calculateRisk(userInput);
+            displayRiskLevel(riskLevel);
+        }
+
+        function calculateRisk(text) {
+            /*TODO use chatGPT AI tools to verify text*/
+
+            // simple approach first 
+            if (text.includes("urgent") || text.includes("verify")) {
+                return "High Caution";
+            } else if (text.includes("lottery") || text.includes("free money")) {
+                return "Moderate Caution";
+            } else {
+                return "Low Caution";
+            }
+        }
+
+        function displayRiskLevel(riskLevel) {
+            var resultDiv = document.getElementById("result");
+            resultDiv.textContent = "Scam Risk Level: " + riskLevel;
+
+            // Update the color of the risk scale based on the risk level
+            var riskLevels = ["low-caution", "moderate-caution", "high-caution"];
+            var riskScale = document.getElementById("risk-scale");
+
+            riskLevels.forEach(function(level) {
+                riskScale.querySelector("." + level).classList.remove("flash");
+            });
+
+            var riskLevelElement = riskScale.querySelector("." + riskLevel.toLowerCase());
+            riskLevelElement.classList.add("flash");
+
+            // Remove the flashing effect after a delay
+            setTimeout(function() {
+                riskLevelElement.classList.remove("flash");
+            }, 1000); // 1000 milliseconds (1 second) delay
+        }
+    </script>
+</body>
+</html>
