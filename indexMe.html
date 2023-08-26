@@ -6,124 +6,44 @@
     <title>Scam Message Scanner</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        #search-box {
-            padding: 10px;
-            width: 300px;
-            font-size: 16px;
-        }
-
-        #scan-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-
-        #scan-button:hover {
-            background-color: #0056b3;
-        }
-
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        #risk-scale {
-            display: flex;
-            justify-content: space-between;
-            width: 300px;
-            margin-top: 20px;
-        }
-
-        .risk-level {
-            flex: 1;
-            height: 10px;
-            margin: 0 5px;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .low-caution {
-            background-color: #4CAF50; /* Green */
-        }
-
-        .moderate-caution {
-            background-color: #FFC107; /* Yellow */
-        }
-
-        .high-caution {
-            background-color: #F44336; /* Red */
-        }
-
-        .risk-number {
-            position: absolute;
-            top: 15px;
             text-align: center;
-            width: 100%;
+            font-family: sans-serif;
+            font-size: 16px;
         }
-        
-        /* Flashing animation */
-        .flash {
-            animation: flash 1s alternate infinite;
+
+        .center {
+            text-align: center;
         }
-        
-        @keyframes flash {
-            from {
-                background-color: #F44336; /* Red */
-            }
-            to {
-                background-color: #FFC107; /* Yellow */
-            }
+
+        . {
+            font-family: sans-serif;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <h1>Scam Message Scanner</h1>
-    <input type="text" id="search-box" placeholder="Enter text to scan...">
-    <button id="scan-button" onclick="scanMessage()">Scan</button>
-    <div id="result"></div>
-    <div id="risk-scale">
-        <div class="risk-level low-caution">
-            <div class="risk-number">1</div>
-        </div>
-        <div class="risk-level moderate-caution">
-            <div class="risk-number">5</div>
-        </div>
-        <div class="risk-level high-caution">
-            <div class="risk-number">10</div>
-        </div>
-    </div>
+    <h1 class="center ">Scam Message Scanner</h1>
+    <p class="center ">This is a scam message scanner that can help you identify potentially harmful messages.</p>
+    <p class="center ">The scanner works by identifying high-risk words and other risk factors. If the scanner identifies a high-risk message, it will warn you to be careful.</p>
+    <p class="center ">The list of high-risk words is stored in a Google Sheets spreadsheet. You can see the list of words by clicking on the following link:</p>
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpfY8vT4IU4VZ6JfyXm4lAISH0C9lCv-oKDeUEZ43LQ8VJLnVt5u8PGJATvkU-mZVqmfmxPrgz325P/pubhtml?widget=true&amp;headers=false" class="center ">List of High-Risk Words</a>
+    <h2 class="center ">How to Use the Scanner</h2>
+    <p class="center ">To use the scanner, simply enter the text of the message you want to scan in the text box below. Then, click on the "Scan" button.</p>
+    <input type="text" id="search-box" class="center " placeholder="Enter text to scan...">
+    <button id="scan-button" class="center " onclick="scanMessage()">Scan</button>
+    <div id="result" class="center "></div>
 
     <script>
+        // Function to simulate the scanning process
         function scanMessage() {
             var userInput = document.getElementById("search-box").value;
             var riskLevel = calculateRisk(userInput);
             displayRiskLevel(riskLevel);
         }
 
+        // Function to calculate the risk level
         function calculateRisk(text) {
-            /*TODO use chatGPT AI tools to verify text*/
-
-            // simple approach first 
+            // This is a simplified example; you can replace it with your actual logic
             if (text.includes("urgent") || text.includes("verify")) {
                 return "High Caution";
             } else if (text.includes("lottery") || text.includes("free money")) {
@@ -133,25 +53,10 @@
             }
         }
 
+        // Function to display the risk level
         function displayRiskLevel(riskLevel) {
             var resultDiv = document.getElementById("result");
             resultDiv.textContent = "Scam Risk Level: " + riskLevel;
-
-            // Update the color of the risk scale based on the risk level
-            var riskLevels = ["low-caution", "moderate-caution", "high-caution"];
-            var riskScale = document.getElementById("risk-scale");
-
-            riskLevels.forEach(function(level) {
-                riskScale.querySelector("." + level).classList.remove("flash");
-            });
-
-            var riskLevelElement = riskScale.querySelector("." + riskLevel.toLowerCase());
-            riskLevelElement.classList.add("flash");
-
-            // Remove the flashing effect after a delay
-            setTimeout(function() {
-                riskLevelElement.classList.remove("flash");
-            }, 1000); // 1000 milliseconds (1 second) delay
         }
     </script>
 </body>
