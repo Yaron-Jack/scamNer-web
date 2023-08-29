@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scam Message Scanner</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat.css">
 </head>
 <body>
     <header>
@@ -15,20 +16,19 @@
         <section class="intro">
             <p class="font-style">Welcome to the Scam Message Scanner! Protect yourself from potentially harmful messages.</p>
             <p class="font-style">Our scanner analyzes messages for high-risk words and other factors to keep you safe.</p>
+            <p class="font-style">we use integrated chatGPT.</p>
         </section>
 
-        <section class="how-to">
-            <h2 class="font-style">How to Use the Scanner</h2>
-            <p class="font-style">Enter the message you want to scan in the box below and click the "Scan" button.</p>
-            
-            <div class="scan-box">
-                <input type="text" id="search-box" class="font-style" placeholder="Enter text to scan...">
-                <button id="scan-button" class="font-style" onclick="scanMessage()">Scan</button>
+        <section class="chat-container">
+            <div class="chat">
+                <div class="chat-output"></div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" class="font-style" placeholder="Type your message...">
+                    <button id="send-button" class="font-style">Send</button>
+                </div>
             </div>
-
-            <div id="result" class="result font-style"></div>
         </section>
-        
+      
         <section class="high-risk-words">
             <h2 class="font-style">High-Risk Words</h2>
             <p class="font-style">Check the list of high-risk words that our scanner uses:</p>
@@ -36,6 +36,6 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="chatgpt.js"></script>
 </body>
 </html>
