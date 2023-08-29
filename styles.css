@@ -1,0 +1,48 @@
+/* styles.css */
+body {
+    font-family: 'Sans-serif', Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333; /* Font color for the entire page */
+}
+
+header {
+    background-color: #007acc;
+    color: #fff;
+    padding: 20px 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.center {
+    text-align: center;
+}
+
+.font-style {
+    font-family: 'Sans-serif', Arial, sans-serif;
+    color: #333; /* Font color for the content */
+    font-size: 16px;
+}
+
+.result {
+    font-weight: bold;
+    margin-top: 20px;
+    color: #007acc; /* Font color for specific elements like results */
+}
+
+.high-risk-words a {
+    color: #007acc;
+    text-decoration: underline;
+}
+
+/* Additional styles can be added as needed */
