@@ -6,9 +6,62 @@
     <title>Scam Message Scanner</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="chat.css">
+    <style>
+        /* Add new styles for the news column */
+        .news-column {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .news-item {
+            margin-bottom: 10px;
+        }
+
+        /* Style the news links */
+        .news-link {
+            color: #007acc;
+            text-decoration: none;
+        }
+
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Add styles for the moving header text */
+        .moving-header-text {
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            animation: moveText 16s linear infinite;
+            white-space: nowrap; /* Prevent the text from wrapping */
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+            80% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
+        <!-- Add the moving header text -->
+        <div class="moving-header-text">
+            Use caution! Don't be careless, check before you act
+        </div>
         <h1 class="center">Scam Message Scanner</h1>
     </header>
     
@@ -16,25 +69,21 @@
         <section class="intro">
             <p class="font-style">Welcome to the Scam Message Scanner! Protect yourself from potentially harmful messages.</p>
             <p class="font-style">Our scanner analyzes messages for high-risk words and other factors to keep you safe.</p>
-            <p class="font-style">we use integrated chatGPT.</p>
+            <p class="font-style">We use integrated chatGPT.</p>
         </section>
 
-        <section class="chat-container">
-            <div class="chat">
-                <div class="chat-output"></div>
-                <div class="chat-input">
-                    <input type="text" id="user-input" class="font-style" placeholder="Type your message...">
-                    <button id="send-button" class="font-style">Send</button>
+        <!-- Create a container for both chat and news columns -->
+        <div class="container">
+            <section class="chat-container">
+                <div class="chat">
+                    <div class="chat-output"></div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" class="font-style" placeholder="Type your message...">
+                        <button id="send-button" class="font-style">Send</button>
+                    </div>
                 </div>
-            </div>
-        </section>
-      
-        <section class="high-risk-words">
-            <h2 class="font-style">High-Risk Words</h2>
-            <p class="font-style">Check the list of high-risk words that our scanner uses:</p>
-            <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpfY8vT4IU4VZ6JfyXm4lAISH0C9lCv-oKDeUEZ43LQ8VJLnVt5u8PGJATvkU-mZVqmfmxPrgz325P/pubhtml?widget=true&amp;headers=false" target="_blank" class="font-style">List of High-Risk Words</a>
-        </section>
-        
+            </section>
+
             <!-- Create a news column -->
             <section class="news-column">
                 <h2 class="font-style">News about Scams</h2>
@@ -48,6 +97,9 @@
         </div>
     </main>
 
+    <script>
+        const API_KEY = '<%= apiKey %>'; // This inserts the API key into the client-side JavaScript
+    </script>
     <script src="chatgpt.js"></script>
 </body>
 </html>
